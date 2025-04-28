@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sidecar-service
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: sidecar-service
+  template:
+    metadata:
+      labels:
+        app: sidecar-service
+    spec:
+      containers:
+      - name: sidecar-service
+        image: sidecar-service
+        imagePullPolicy: Never
+        ports:
+        - containerPort: 5000
