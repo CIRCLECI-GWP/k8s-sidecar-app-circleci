@@ -13,7 +13,7 @@ spec:
         app: sidecar-service
     spec:
       containers:
-      - name: sidecar-service
+      - name: akscircleciacrregistry.azurecr.io/sidecar-service
         image: akscircleciacrregistry.azurecr.io/sidecar-service
         #imagePullPolicy: Never
         ports:
