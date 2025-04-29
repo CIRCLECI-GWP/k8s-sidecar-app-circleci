@@ -13,12 +13,12 @@ spec:
         app: main-service
     spec:
       containers:
-      - name: akscircleciacrregistry.azurecr.io/main-service
+      - name: main-service
         image: akscircleciacrregistry.azurecr.io/main-service
         #imagePullPolicy: Never
         ports:
         - containerPort: 5000
-      - name: akscircleciacrregistry.azurecr.io/main-service
+      - name: sidecar-service
         image: akscircleciacrregistry.azurecr.io/sidecar-service
         #imagePullPolicy: Never
         ports:
