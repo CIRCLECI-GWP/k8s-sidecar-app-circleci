@@ -14,12 +14,12 @@ spec:
     spec:
       containers:
       - name: main-service
-        image: main-service
-        imagePullPolicy: Never
+        image: akscircleciacrregistry.azurecr.io/main-service
+        #imagePullPolicy: Never
         ports:
         - containerPort: 5000
       - name: sidecar-service
-        image: sidecar-service
-        imagePullPolicy: Never
+        image: akscircleciacrregistry.azurecr.io/sidecar-service
+        #imagePullPolicy: Never
         ports:
         - containerPort: 5000

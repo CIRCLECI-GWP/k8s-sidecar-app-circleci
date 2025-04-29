@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: sidecar-service
-        image: sidecar-service
-        imagePullPolicy: Never
+        image: akscircleciacrregistry.azurecr.io/sidecar-service
+        #imagePullPolicy: Never
         ports:
         - containerPort: 5000
