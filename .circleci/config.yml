@@ -1,0 +1,44 @@
+version: 2.1
+
+orbs:
+  azure-aks: circleci/azure-aks@1.2.0
+
+jobs:
+  build-and-deploy:
+    docker:
+      - image: cimg/base:stable
+    steps:
+      - checkout
+
+      - run:
+          name: Install Azure CLI
+          command: |
+            curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash
+
+      - run:
+          name: Install kubectl
+          command: |
+            sudo az aks install-cli
+
+      - run:
+          name: Azure Login
+          command: |
+            az login --service-principal -u $AZURE_CLIENT_ID -p $AZURE_CLIENT_SECRET --tenant $AZURE_TENANT_ID
+
+      - run:
+          name: Get AKS credentials
+          command: |
+            az aks get-credentials --resource-group myResourceGroup --name myAKSCluster
+
+      - run:
+          name: Deploy to AKS
+          command: |
+            kubectl apply -f k8s/main-deployment.yaml
+            kubectl apply -f k8s/main-service.yaml
+            kubectl apply -f k8s/sidecar-deployment.yaml
+            kubectl apply -f k8s/sidecar-service.yaml
+
+workflows:
+  deploy:
+    jobs:
+      - build-and-deploy
