@@ -14,6 +14,6 @@ spec:
     spec:
       containers:
       - name: main-service
-        image: <YOUR-ACR-NAME>.azurecr.io/main-service
+        image: main-service
         ports:
         - containerPort: 5000
