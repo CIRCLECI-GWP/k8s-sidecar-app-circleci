@@ -23,10 +23,10 @@ def download_file():
         sidecar_url = random.choice(SIDECARS)
         print(f"[INFO] Routing request to sidecar: {sidecar_url}")
         try:
-            # Send both the original request + active_requests
+            # Send both the original request + active_requests to the sidecar
             data = request.get_json()
             payload = dict(data or {})
-            payload["active_requests"] = random_requests  # 👈 Add the number to the request
+            payload["active_requests"] = random_requests
 
             response = requests.post(f"{sidecar_url}/download", json=payload)
             return (response.content, response.status_code, response.headers.items())
