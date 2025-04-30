@@ -15,5 +15,6 @@ spec:
       containers:
       - name: main-service
         image: main-service
+        imagePullPolicy: Never
         ports:
         - containerPort: 5000
