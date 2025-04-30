@@ -26,7 +26,7 @@ def download_file():
             # Send both the original request + active_requests
             data = request.get_json()
             payload = dict(data or {})
-            payload["active_requests"] = random_requests  # 👈 Add the number to the request
+            payload["active_requests"] = random_requests  # Add the number to the request
 
             response = requests.post(f"{sidecar_url}/download", json=payload)
             return (response.content, response.status_code, response.headers.items())

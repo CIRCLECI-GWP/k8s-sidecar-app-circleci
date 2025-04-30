@@ -6,7 +6,7 @@ app = Flask(__name__)
 def sidecar_download():
     data = request.get_json()
     filename = data.get('filename', 'default.txt')
-    active_requests = data.get('active_requests', 'Unknown')  # 👈 read active_requests
+    active_requests = data.get('active_requests', 'Unknown')  #read active_requests
 
     message = f"[SIDECAR SERVICE]: Successfully processed download for {filename}. Received active requests: {active_requests}"
     print(f"[INFO] {message}")
