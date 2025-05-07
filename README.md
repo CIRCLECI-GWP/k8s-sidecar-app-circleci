@@ -15,6 +15,11 @@ To simulate the sidecar deployment locally, begin by checking out the appropriat
 ```bash
 git checkout local-branch
 ```
+Start minikube:
+
+```bash
+minikube start
+```
 
 Next, build the Docker images for the main service and sidecar inside minikube:
 
