@@ -27,7 +27,7 @@ jobs:
       - run:
           name: Get AKS credentials
           command: |
-            az aks get-credentials --resource-group AKSResourceGroup --name AKSCluster
+            az aks get-credentials --resource-group $AZURE_RESOURCE_GROUP_NAME --name $AZURE_CLUSTER_NAME
 
       - run:
           name: Deploy to AKS
