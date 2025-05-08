@@ -44,12 +44,12 @@ jobs:
       - run:
           name: Attach ACR to AKS
           command: |
-            az aks update -n $AKS_CLUSTER_NAME -g $AZURE_RESOURCE_GROUP_NAME --attach-acr $ACR_NAME
+            az aks update -n $AKS_CLUSTER_NAME -g $RESOURCE_GROUP_NAME --attach-acr $ACR_NAME
 
       - run:
           name: Get AKS credentials
           command: |
-            az aks get-credentials --resource-group $AZURE_RESOURCE_GROUP_NAME --name $AKS_CLUSTER_NAME
+            az aks get-credentials --resource-group $RESOURCE_GROUP_NAME --name $AKS_CLUSTER_NAME
 
       - run:
           name: Deploy to AKS
