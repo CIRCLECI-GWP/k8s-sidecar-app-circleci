@@ -25,9 +25,31 @@ jobs:
             az login --service-principal -u $AZURE_CLIENT_ID -p $AZURE_CLIENT_SECRET --tenant $AZURE_TENANT_ID
 
       - run:
+          name: Build Docker Images
+          command: |
+            docker build -t $ACR_NAME.azurecr.io/main-service:latest -f Dockerfile.main .
+            docker build -t $ACR_NAME.azurecr.io/sidecar-service:latest -f Dockerfile.sidecar .
+
+      - run:
+          name: Azure ACR Login
+          command: |
+            az acr login --name $ACR_NAME
+
+      - run:
+          name: Push Images to ACR
+          command: |
+            docker push $ACR_NAME.azurecr.io/main-service:latest
+            docker push $ACR_NAME.azurecr.io/sidecar-service:latest
+
+      - run:
+          name: Attach ACR to AKS
+          command: |
+            az aks update -n $AKS_CLUSTER_NAME -g $RESOURCE_GROUP_NAME --attach-acr $ACR_NAME
+
+      - run:
           name: Get AKS credentials
           command: |
-            az aks get-credentials --resource-group AKSResourceGroup --name AKSCluster
+            az aks get-credentials --resource-group $RESOURCE_GROUP_NAME --name $AKS_CLUSTER_NAME
 
       - run:
           name: Deploy to AKS
