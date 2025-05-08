@@ -5,10 +5,10 @@ orbs:
 jobs:
   build-and-deploy:
     docker:
-      - image: ubuntu-2204:2023.10.1
+      - image: cimg/base:stable
     steps:
       - checkout
-
+      - setup_remote_docker
       - run:
           name: Install Azure CLI
           command: |
